@@ -27,7 +27,7 @@ jobs:
       # Step 2: Report the Test Execution Status to Ketryx
       - name: Report Test Results to Ketryx
         # You would use a Ketryx-provided Action (or a custom script calling their API)
-        uses: ketryx/ketryx-action@v2 
+        uses: Ketryx/ketryx-github-action@v1 
         with:
           ketryx-project-id: ${{ secrets.KETRYX_PROJECT_ID }} # Secret for your project ID
           ketryx-api-token: ${{ secrets.KETRYX_API_TOKEN }} # Secret for authentication
