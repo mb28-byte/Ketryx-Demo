@@ -29,8 +29,8 @@ jobs:
         # You would use a Ketryx-provided Action (or a custom script calling their API)
         uses: Ketryx/ketryx-github-action@v1 
         with:
-          ketryx-project-id: ${{ secrets.KETRYX_PROJECT_ID }} # Secret for your project ID
-          ketryx-api-token: ${{ secrets.KETRYX_API_TOKEN }} # Secret for authentication
+          project: ${{ secrets.KETRYX_PROJECT_ID }} # Secret for your project ID
+          api-key: ${{ secrets.KETRYX_API_TOKEN }} # Secret for authentication
           
           # The key is to associate the results (PASS/FAIL) with the Git Commit SHA
           test-results-file: test_results.xml # Assuming a JUnit XML report was generated
