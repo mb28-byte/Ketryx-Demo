@@ -1,5 +1,5 @@
 ---
-itemId: tc-hw-1
+itemId: tc-1
 itemType: Test Case
 itemVerifies: sw-1
 ---
