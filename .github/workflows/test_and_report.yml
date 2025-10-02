@@ -24,19 +24,26 @@ jobs:
           python run_test.py
         continue-on-error: true # Important: Allows the workflow to continue to the reporting step
 
-      # Step 2: Report the Test Execution Status to Ketryx
-      - name: Report Test Results to Ketryx
-        # You would use a Ketryx-provided Action (or a custom script calling their API)
-        uses: Ketryx/ketryx-github-action@v1 
+      # Step C: Report Results to Ketryx (FINAL CORRECTION)
+      - name: Report Test Execution to Ketryx
+        # Make sure this uses the correct path/version you found (e.g., @v2)
+        uses: ketryx/ketryx-action@v2 
         with:
-          project: ${{ secrets.KETRYX_PROJECT_ID }} # Secret for your project ID
-          api-key: ${{ secrets.KETRYX_API_TOKEN }} # Secret for authentication
+          # --- Authentication and Project ID ---
+          project: ${{ secrets.KETRYX_PROJECT_ID }} # Corrected parameter name
+          api-key: ${{ secrets.KETRYX_API_TOKEN }}    # Corrected parameter name
           
-          # The key is to associate the results (PASS/FAIL) with the Git Commit SHA
-          test-results-file: test_results.xml # Assuming a JUnit XML report was generated
-          test-framework: junit 
-          commit-sha: ${{ github.sha }}
+          # --- Test Results Path ---
+          # This replaces 'test-results-file' and defines the path for the JUnit XML report.
+          test-junit-path: ./test_results.xml
 
+          # --- Traceability ---
+          commit-sha: ${{ github.sha }}
+          
+          # --- REMOVED OBSOLETE PARAMETERS ---
+          # 'test-results-file' is removed.
+          # 'test-framework' is removed.
+          
       - name: Finalize Report
         # This step ensures the workflow fails if the test failed, regardless of the reporting status
         if: ${{ steps.test_run.outcome == 'failure' }}
