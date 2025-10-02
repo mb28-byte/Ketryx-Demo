@@ -4,9 +4,9 @@ itemType: Software Item Spec
 itemFulfills: GBIT1-1
 ---
 
-# Test SW item
+# Print "hello world"
 
 This is the text to describe a Git-based SW item
-* This is bullet 1
+* Display "hello world" to the user
 * Bullet 2
 * etc.
