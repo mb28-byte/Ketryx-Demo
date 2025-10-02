@@ -1,0 +1,42 @@
+name: Test Execution and Ketryx Reporting
+
+on:
+  push:
+    branches: [ main ] # Runs every time code is pushed to the main branch
+
+jobs:
+  run_tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+
+      # Step 1: Run the test script and output a report (e.g., in a temporary file)
+      - name: Execute Test
+        id: test_run
+        # We run the test, but the job MUST NOT fail here, 
+        # so the subsequent Ketryx reporting step can run.
+        run: |
+          python run_test.py
+        continue-on-error: true # Important: Allows the workflow to continue to the reporting step
+
+      # Step 2: Report the Test Execution Status to Ketryx
+      - name: Report Test Results to Ketryx
+        # You would use a Ketryx-provided Action (or a custom script calling their API)
+        uses: ketryx/ketryx-action@v1 
+        with:
+          ketryx-project-id: ${{ secrets.KETRYX_PROJECT_ID }} # Secret for your project ID
+          ketryx-api-token: ${{ secrets.KETRYX_API_TOKEN }} # Secret for authentication
+          
+          # The key is to associate the results (PASS/FAIL) with the Git Commit SHA
+          test-results-file: test_results.xml # Assuming a JUnit XML report was generated
+          test-framework: junit 
+          commit-sha: ${{ github.sha }}
+
+      - name: Finalize Report
+        # This step ensures the workflow fails if the test failed, regardless of the reporting status
+        if: ${{ steps.test_run.outcome == 'failure' }}
+        run: exit 1
