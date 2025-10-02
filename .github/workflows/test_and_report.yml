@@ -27,7 +27,7 @@ jobs:
       # Step C: Report Results to Ketryx (FINAL CORRECTION)
       - name: Report Test Execution to Ketryx
         # Make sure this uses the correct path/version you found (e.g., @v2)
-        uses: ketryx/ketryx-action@v2 
+        uses: Ketryx/ketryx-github-action@v1 
         with:
           # --- Authentication and Project ID ---
           project: ${{ secrets.KETRYX_PROJECT_ID }} # Corrected parameter name
