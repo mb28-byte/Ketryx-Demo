@@ -1,6 +1,7 @@
 ---
 itemId: sw-1
 itemType: Software Item Spec
+itemFulfills: GBIT1-1
 ---
 
 # Test SW item
