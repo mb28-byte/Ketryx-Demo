@@ -24,6 +24,22 @@ jobs:
           python run_test_hello_world.py
         continue-on-error: true # Important: Allows the workflow to continue to the reporting step
 
+      # Step 2: New diagnostic step
+      - name: Check Ketryx Inputs (SAFE)
+        run: |
+          # Use a conditional echo to confirm if the variable is present (not empty).
+          # GitHub will censor the actual value, but if the output is not just 'IS EMPTY', 
+          # you know it successfully loaded *a* value.
+          if [ -z "${{ secrets.KETRYX_PROJECT_ID }}" ]; then
+            echo "Project ID Secret IS EMPTY. Check GitHub Secrets."
+            exit 1 # Fail the job if the critical secret is truly missing
+          else
+            echo "Project ID Secret is PRESENT (value will be censored as ***)."
+            # You can try printing the censored value just to see the ***:
+            echo "Censored Project ID: ${{ secrets.KETRYX_PROJECT_ID }}"
+          fi
+
+
       # Step C: Report Results to Ketryx (FINAL CORRECTION)
       - name: Report Test Execution to Ketryx
         # Make sure this uses the correct path/version you found (e.g., @v2)
