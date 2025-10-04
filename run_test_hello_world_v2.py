@@ -6,7 +6,7 @@ import time
 import os
 
 # --- Configuration for Ketryx Traceability ---
-TEST_CASE_ID = "tc-hw-1" # Must match the ID in your Markdown test case file
+TEST_CASE_ID = "tc-1" # Must match the ID in your Markdown test case file
 REPORT_FILENAME = "test_results.xml"
 CODE_TO_TEST = "hello.py" # The actual file being tested
 EXPECTED_OUTPUT = "hello world"
