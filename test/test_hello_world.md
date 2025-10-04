@@ -4,7 +4,7 @@ itemType: Test Case
 itemTests: sw-1
 ---
 
-# Github Verify Hello World Output
+# Verify Hello World Output
 
 **Objective:** Verify that the primary application script executes successfully and produces the expected output string "hello world" to confirm basic system functionality.
 
