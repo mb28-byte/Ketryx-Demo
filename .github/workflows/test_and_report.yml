@@ -56,7 +56,7 @@ jobs:
           
           # 4. Traceability and Service Inputs
           commit-sha: ${{ github.sha }}
-          ketryx-url: 'https://app.ketryx.com'
+          ketryx-url: 'https://cs.ketryx.net'
           check-dependencies-status: false
           check-item-association: false
           check-release-status: false
