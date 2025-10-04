@@ -21,7 +21,7 @@ jobs:
         # We run the test, but the job MUST NOT fail here, 
         # so the subsequent Ketryx reporting step can run.
         run: |
-          python run_test_hello_world_v2.py
+          python run_test_hello_world_v3.py
         continue-on-error: true # Important: Allows the workflow to continue to the reporting step
 
       # Step 2: New diagnostic step
