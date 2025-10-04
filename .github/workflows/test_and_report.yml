@@ -30,13 +30,13 @@ jobs:
           # Use a conditional echo to confirm if the variable is present (not empty).
           # GitHub will censor the actual value, but if the output is not just 'IS EMPTY', 
           # you know it successfully loaded *a* value.
-          if [ -z "${{ secrets.KETRYX_PROJECT_ID }}" ]; then
+          if [ -z "${{ secrets.KETRYX_PROJECT }}" ]; then
             echo "Project ID Secret IS EMPTY. Check GitHub Secrets."
             exit 1 # Fail the job if the critical secret is truly missing
           else
             echo "Project ID Secret is PRESENT (value will be censored as ***)."
             # You can try printing the censored value just to see the ***:
-            echo "Censored Project ID: ${{ secrets.KETRYX_PROJECT_ID }}"
+            echo "Censored Project ID: ${{ secrets.KETRYX_PROJECT }}"
           fi
 
 
@@ -46,8 +46,8 @@ jobs:
         uses: Ketryx/ketryx-github-action@v1 
         with:
           # --- Authentication and Project ID ---
-          project: ${{ secrets.KETRYX_PROJECT_ID }} # Corrected parameter name
-          api-key: ${{ secrets.KETRYX_API_TOKEN }}    # Corrected parameter name
+          project: ${{ secrets.KETRYX_PROJECT }} # Corrected parameter name
+          api-key: ${{ secrets.KETRYX_API_KEY }}    # Corrected parameter name
           
           # --- Test Results Path ---
           # This replaces 'test-results-file' and defines the path for the JUnit XML report.
