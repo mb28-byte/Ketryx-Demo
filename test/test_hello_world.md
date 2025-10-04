@@ -1,10 +1,10 @@
 ---
 itemId: tc-1
 itemType: Test Case
-itemVerifies: sw-1
+itemTests: sw-1
 ---
 
-# Verify Hello World Output
+# Github Verify Hello World Output
 
 **Objective:** Verify that the primary application script executes successfully and produces the expected output string "hello world" to confirm basic system functionality.
 

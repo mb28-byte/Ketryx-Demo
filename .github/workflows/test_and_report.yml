@@ -21,7 +21,7 @@ jobs:
         # We run the test, but the job MUST NOT fail here, 
         # so the subsequent Ketryx reporting step can run.
         run: |
-          python run_test_hello_world_v2.py
+          python run_test_hello_world_v3.py
         continue-on-error: true # Important: Allows the workflow to continue to the reporting step
 
       # Step 2: New diagnostic step
@@ -55,6 +55,7 @@ jobs:
           test-junit-path: ./test_results.xml
           
           # 4. Traceability and Service Inputs
+          version: 'KXVSN6DMH77V7ZV9Z4T5M12DMS5BWRW'
           commit-sha: ${{ github.sha }}
           ketryx-url: 'https://cs.ketryx.net'
           check-dependencies-status: false
