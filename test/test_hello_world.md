@@ -1,7 +1,7 @@
 ---
 itemId: tc-1
 itemType: Test Case
-itemVerifies: sw-1
+itemTests: sw-1
 ---
 
 # Verify Hello World Output
